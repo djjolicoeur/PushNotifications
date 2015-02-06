@@ -41,16 +41,16 @@ static char launchNotificationKey;
 	if (notification) {
 		NSDictionary *launchOptions = [notification userInfo];
         if (launchOptions){
-			
+
             NSMutableDictionary* notification = [NSMutableDictionary dictionaryWithDictionary:
                                                  [launchOptions objectForKey: @"UIApplicationLaunchOptionsRemoteNotificationKey"]];
-            
+
             [notification setObject:[NSNumber numberWithBool:NO] forKey:@"foreground"];
-            
+
             [notification setObject:[NSNumber numberWithBool:YES] forKey:@"userAction"];
-            
+
             [[NotificationService instance] receivedNotification:notification];
-            
+
         }
 	}
 }
@@ -58,17 +58,17 @@ static char launchNotificationKey;
 -(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
 
     [[NotificationService instance] didRegisterUserNotificationSettings:notificationSettings];
-    
+
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
+
     [[NotificationService instance] onRegistered:deviceToken];
-   
+
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    
+
     [[NotificationService instance] failToRegister:error];
 
 }
@@ -80,7 +80,7 @@ static char launchNotificationKey;
         appState = application.applicationState;
     }
 
-    NSMutableDictionary* notification = [NSMutableDictionary dictionaryWithDictionary:[userInfo objectForKey:@"aps"]];
+    NSMutableDictionary* notification = [NSMutableDictionary dictionaryWithDictionary:[userInfo mutableCopy]];
 
     [notification setObject:[self getUUID] forKey:@"uuid"];
     [notification setObject:[self getCurrentDate] forKey:@"timestamp"];
@@ -92,7 +92,7 @@ static char launchNotificationKey;
         [notification setObject:[NSNumber numberWithBool:NO] forKey:@"foreground"];
         [notification setObject:[NSNumber numberWithBool:YES] forKey:@"coldstart"];
     }
-    
+
     [[NotificationService instance] receivedNotification:notification];
 
     if(appState == UIApplicationStateBackground){
