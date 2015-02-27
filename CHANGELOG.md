@@ -1,5 +1,19 @@
 # PushNotification plugin changelog
 
+### 1.2.0 (TODO)
+
+Breaking changes (Android):
+- The `coldstart` property now means that the message was received when the app was not running, not that it was launched via the notification.
+
+Bugfixes (Android):
+- Correctly kickstart the application when it is not running and a push notification in the launcher is tapped.
+- Do not display push notifications in status bar/launcher if the app is running.
+- Clear push notifications from status bar when the app is opened, not when it again returns to the background.
+
+### 1.1.1 (2015-01-15)
+
+Features:
+- Messages now have `uuid` and `timestamp` fields on Android.
 
 ### 1.1.0 (2015-01-09)
 
