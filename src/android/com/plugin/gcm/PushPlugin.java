@@ -95,8 +95,9 @@ public class PushPlugin extends CordovaPlugin {
     boolean result = false;
 
     if (REGISTER.equals(action)) {
+        Log.v(TAG, "handleRegister.REGISTER -> data: " + data);
 
-      result = handleRegister(data, callbackContext);
+        result = handleRegister(data, callbackContext);
 
     }
     else if (ON_MESSAGE_FOREGROUND.equals(action)) {

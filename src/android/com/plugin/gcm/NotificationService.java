@@ -412,6 +412,7 @@ public class NotificationService {
         }
 
         public void notifyRegistered() {
+            Log.v(TAG, "In Notify Registered");
             if (hasNotifiedOfRegistered()) {
                 Log.v(TAG,
                         "notifyRegistered() - Webview already notified of registration. skipping callback. webview: "
@@ -486,10 +487,12 @@ public class NotificationService {
         }
 
         public void setRegisterCallBack(CallbackContext callBack) {
+            Log.v(TAG, "In Set Register Callback " + callBack.toString());
             mRegisterCallBack = callBack;
         }
 
         public CallbackContext getRegisterCallBack() {
+            Log.v(TAG, "In Get Register Callback");
             return mRegisterCallBack;
         }
 
